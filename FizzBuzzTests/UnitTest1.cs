@@ -4,35 +4,54 @@ namespace FizzBuzzTests
 {
     public class Tests
     {
-        [Test]
-        public void WhenPassedThreeReturnsFizz()
+        [TestCase("3")]
+        [TestCase("6")]
+        [TestCase("999")]
+        public void WhenPassedMultipleOThreeReturnsFizz(string number)
         {
-            Assert.That(FizzBuzzer.Convert(3), Is.EqualTo("Fizz"));
+            Assert.That(FizzBuzzer.ConvertFizzBuzz(number), Is.EqualTo("Fizz"));
         }
 
 
-        [Test]
-        public void WhenPassedFiveReturnsBuzz() 
+        [TestCase("5")]
+        [TestCase("10")]
+        [TestCase("1000")]
+        public void WhenPassedMultipleOFiveReturnsBuzz(string number) 
         {
-            Assert.That(FizzBuzzer.Convert(5), Is.EqualTo("Buzz"));
+            Assert.That(FizzBuzzer.ConvertFizzBuzz(number), Is.EqualTo("Buzz"));
         }
 
-        [Test]
-        public void WhenPassedSixReturnsFizz()
+        [TestCase("2")]
+        [TestCase("236")]
+        [TestCase("1")]
+        public void WhenPassedNonMatchingReturnsNonMatching(string number)
         {
-            Assert.That(FizzBuzzer.Convert(6), Is.EqualTo("Fizz"));
+            Assert.That(FizzBuzzer.ConvertFizzBuzz(number), Is.EqualTo(number));
         }
 
-        [Test]
-        public void WhenPassedNinetyNineReturnsFizz()
+        [TestCase("Bad")]
+        [TestCase("ReallyBad")]
+        [TestCase("ReallyReallyBad")]
+        public void WhenPassedBadReturnsNotNumber(string word)
         {
-            Assert.That(FizzBuzzer.Convert(99), Is.EqualTo("Fizz"));
+            Assert.That(FizzBuzzer.ConvertFizzBuzz(word), Is.EqualTo("Input should be a number!"));
         }
 
-        [Test]
-        public void WhenPassedTenReturnsBuzz()
+        [TestCase("15")]
+        [TestCase("450")]
+        [TestCase("615")]
+        public void WhenPassedMultipleOf15ReturnsFizzBuzz(string number)
         {
-            Assert.That(FizzBuzzer.Convert(10), Is.EqualTo("Buzz"));
+            Assert.That(FizzBuzzer.ConvertFizzBuzz(number), Is.EqualTo("FizzBuzz"));
         }
+
+        [TestCase("1.0")]
+        [TestCase("3.3")]
+        [TestCase("13.13")]
+        public void WhenPassedDecimalReturnsDecimal(string decimalnumber)
+        {
+            Assert.That(FizzBuzzer.ConvertFizzBuzz(decimalnumber), Is.EqualTo("Input should be a number!"));
+        }
+
     }
 }
